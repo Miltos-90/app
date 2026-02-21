@@ -22,5 +22,5 @@ jobs:
     - name: Lint code
       run: PYTHONPATH=. pylint app
     - name: Run tests
-      run: pytest -v ./tests
+      run: python -m pytest
               
