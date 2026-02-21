@@ -18,7 +18,7 @@ RUN python -m venv /app/venv
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Final stage
+# Runtime stage
 FROM dhi.io/python:${PYTHON_VERSION} AS runtime-stage
 
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -27,7 +27,8 @@ ENV PATH="/app/venv/bin:$PATH"
 
 WORKDIR /app
 COPY --from=build-stage /app/venv /app/venv
-COPY . . 
+COPY ./app . 
+COPY ./artifacts/model.pkl .
 
 # Expose the port that the application listens on.
 EXPOSE 8000
