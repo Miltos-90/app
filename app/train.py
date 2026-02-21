@@ -1,12 +1,16 @@
+""" Training code """
+
+import os
+import joblib
+
 
 from sklearn.datasets import load_iris
 from sklearn.ensemble import RandomForestClassifier
-import joblib
-import os
 
 # Load dataset
 data = load_iris()
-X, y = data.data, data.target
+X = data.data # pylint: disable=no-member
+y = data.target # pylint: disable=no-member
 
 # Train model
 model = RandomForestClassifier()
