@@ -19,25 +19,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r ./requirements.txt
         pip install pylint
-    - name: Analysing the code with pylint
+    - name: Lint code
       run: PYTHONPATH=. pylint app
-    - name: Running tests
-      # You may pin to the exact commit or the version.
-      # uses: pavelzw/pytest-action@c9e5b9c8d93290ff47dcf6a28c6b19ca0b42e487
-      uses: pavelzw/pytest-action@v2.1.0
-      with:
-        # Print a GitHub job summary
-        job-summary: false # optional, default is true
-        # Verbose output
-        verbose: true # optional, default is true
-        # Use emojis in the output
-        emoji: false # optional, default is true
-        # Custom arguments to pass to pytest
-        custom-arguments: python -m pytest ./tests # optional, default is 
-        # Custom command to replace the `pytest` call. Can be a custom executable or something like `poetry run pytest` or `micromamba run -n myenv pytest`.
-        custom-pytest: # optional, default is pytest
-        # Title of the report
-        report-title: # optional, default is Test Report
-        # Add 'Click to expand' to the report
-        click-to-expand: # optional, default is true
+    - name: Run tests
+      run: pytest -v ./tests
               
