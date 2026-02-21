@@ -27,7 +27,7 @@ jobs:
       uses: pavelzw/pytest-action@v2.1.0
       with:
         # Print a GitHub job summary
-        job-summary: true # optional, default is true
+        job-summary: false # optional, default is true
         # Verbose output
         verbose: true # optional, default is true
         # Use emojis in the output
