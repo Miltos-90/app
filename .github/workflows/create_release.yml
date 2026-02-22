@@ -6,6 +6,10 @@ on:
     types:
       - completed
 
+  push:
+    tags:
+      - 'v*'
+
 jobs:
   build:
     name: Create Release
@@ -16,6 +20,5 @@ jobs:
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
-        if: github.ref_type == 'tag'
         with:
-          body_path: ${{ github.workspace }}-CHANGELOG.txt
+          body_path: CHANGELOG.txt
