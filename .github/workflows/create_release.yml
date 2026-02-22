@@ -6,15 +6,8 @@ on:
     types:
       - completed
 
-  push:
-    tags:
-      - 'v*'
-
 jobs:
   release:
-    if: >
-      (github.event_name == 'push' && github.ref_type == 'tag') ||
-      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     name: Create Release
     runs-on: ubuntu-latest
     steps:
@@ -23,5 +16,6 @@ jobs:
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
         with:
           body_path: CHANGELOG.txt
