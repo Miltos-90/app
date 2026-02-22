@@ -11,7 +11,10 @@ on:
       - 'v*'
 
 jobs:
-  build:
+  release:
+    if: >
+      (github.event_name == 'push' && github.ref_type == 'tag') ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success')
     name: Create Release
     runs-on: ubuntu-latest
     steps:
